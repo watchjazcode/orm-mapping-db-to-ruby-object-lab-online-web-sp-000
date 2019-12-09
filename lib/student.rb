@@ -75,8 +75,11 @@ class Student
     student_data = DB[:conn].execute("SELECT * FROM students")
   end
 
-  def self.all_students_in_grade_X
-    student_data = DB[:conn].execute("SELECT * FROM students")
+  def self.all_students_in_grade_X(grade)
+    student_data = DB[:conn].execute("SELECT * FROM students WHERE grade = ?", grade)
+    student_data.map do |student_row|
+      new_from_db(student_row)
+    end
   end
 
 
