@@ -78,7 +78,8 @@ class Student
   end
 
   def self.first_student_in_grade_10
-    student_data = DB[:conn].execute("SELECT * FROM students")
+    student_data = DB[:conn].execute("SELECT * FROM students WHERE grade = 10")
+    new_from_db(student_data[0])
   end
 
   def self.all_students_in_grade_X(grade)
